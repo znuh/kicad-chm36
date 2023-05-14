@@ -925,7 +925,7 @@ function change_pcbs_sort_order(id) {
 
 function expand_pcbs_list(l) {
 	return l.map(e => {
-		const [_, dir, fname] = e.Path.match(/(^\S+\/)([^/]+)/);
+		const [_, dir, fname] = e.Path.match(/(^\S+\/)?([^/]+)/);
 		return {
 			Path    : e.Path,
 			ModTime : new Date(e.ModTime),
@@ -955,7 +955,7 @@ function pcbs_server_refresh(no_refresh) {
 			pcbs_list = expand_pcbs_list(result);
 			update_pcbs_list();
 		}
-	  }).catch( (err) => {});
+	  }).catch( (err) => {console.log(err)});
 }
 
 document.addEventListener("DOMContentLoaded", function() {
