@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <title>KiCad to CHM-T36VA exporter</title>
+  <link href="bootstrap-5.3.0-alpha1-dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+  <link href="bootstrap-icons.css" rel="stylesheet">
+  <style>
+  .tooltip-inner {
+    max-width: 400px !important;
+  }
+  .table-sm td {
+ padding-top: 0px;
+  padding-bottom: 0px;
+}
+  </style>
+</head>
+<body>
+
+<!-- warning for missing window.showSaveFilePicker -->
+<div class="alert alert-warning alert-dismissible fade show" id="no_SaveFilePicker" role="alert" style="max-width: 800px" hidden>
+  <h4 class="alert-heading"><i class="bi bi-exclamation-triangle-fill"></i>&nbsp;Notice</h4>
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  <p>Showing a <i>Save As...</i> dialog for the generated DPV file will not work (because <i>window.showSaveFilePicker</i> ist not available).<br>
+  Instead your browser will download the generated DPV file without showing the <i>Save As...</i> dialog.
+  This can usually be resolved by switching to <b>HTTPS instead of HTTP</b>.
+  </p>
+</div>
+
+<!-- disclaimer for bugs, damaged PCBs, mutilated limbs, cause for world war 3, etc. -->
+<div class="alert alert-warning devmode-hide" role="alert" style="max-width: 800px">
+  <h4 class="alert-heading"><i class="bi bi-exclamation-triangle-fill"></i>&nbsp;Disclaimer</h4>
+  <p><b>This software probably has bugs.</b><br>
+  Such bugs can lead to a <b>faulty DPV file</b> which can result in <b>damage to your PCBs, the pick&amp;place machine, your components</b> and maybe even lead to <b>personal injury.</b><br>
+  Therefore you must <b>check the generated DPV file carefully</b> and use it with due caution.<br>
+  <p>THE SOFTWARE IS PROVIDED &#8220;AS IS&#8221;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
+  <hr>
+	<div class="form-check">
+	  <input class="form-check-input devmode-check" type="checkbox" value="" id="disclaimer_accept">
+	  <label class="form-check-label" for="disclaimer_accept">I understand the risks and accept the liability exclusion.</label>
+	</div>
+</div>
+
+<div style="position: fixed; top: 0px; right: 0px;">
+	<ul>
+<li class="form-check form-switch ms-auto mt-2 me-2">
+    <label class="form-check-label" for="lightSwitch">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="25"
+      height="25"
+      fill="currentColor"
+      class="bi bi-brightness-high"
+      viewBox="0 0 16 16">
+      <path d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
+    </svg>
+  </label>
+  <input class="form-check-input" type="checkbox" id="lightSwitch" />
+    </li>
+  </ul>
+</div>
+
+ <table> <!-- settings / control table -->
+	 <tr>
+		 <td><label for="dpv_file">DPV reference:</label><br>&nbsp;</td>
+		 <td>
+			 <input type="file" id="dpv_file" accept=".dpv"/><br>
+			 <span id="dpv_filename"></span>&nbsp;<span id="dpv_date"></span>
+		 </td>
+	 </tr>
+	 <tr>
+		 <td><label for="kicad_file">KiCad PCB:</label><br>&nbsp;</td>
+		 <td>
+			 <button type="button" class="btn btn-secondary btn-sm" id="pcbs_server" data-bs-toggle="modal" data-bs-target="#server_pcbs_modal" hidden>Fetch from server</button>
+			 <input type="file" id="kicad_file" accept=".kicad_pcb"/><br>
+			 <button type="button" class="btn btn-secondary btn-sm" id="reload_pcb" hidden><i class="bi bi-arrow-clockwise"></i>&nbsp;Reload</button>&nbsp;<a href="#" id="pcb_link" hidden></a><span id="kicad_filename"></span>&nbsp;<span id="kicad_date"></span>
+		 </td>
+	 </tr>
+<!--
+	 <tr>
+		 <td><label for="components_file">component definitions:</label></td>
+		 <td><input type="file" id="components_file" accept="application/json"/></td>
+	 </tr>
+-->
+<tr><td>Side:</td>
+<td>
+	<div class="form-check form-check-inline">
+	  <input class="form-check-input" type="radio" name="side_select" id="side_top" value="top" checked>
+	  <label class="form-check-label" for="side_top">Top</label>
+	</div>
+	<div class="form-check form-check-inline">
+	  <input class="form-check-input" type="radio" name="side_select" id="side_bot_hflip" value="bot_hflip">
+	  <label class="form-check-label" for="side_bot_hflip">Bottom - Horizontal flip (<i class="bi bi-arrow-left-right"></i>)</label>
+	</div>
+	<div class="form-check form-check-inline">
+	  <input class="form-check-input" type="radio" name="side_select" id="side_bot_vflip" value="bot_vflip">
+	  <label class="form-check-label" for="side_bot_vflip">Bottom - Vertical flip (<i class="bi bi-arrow-down-up"></i>)</label>
+	</div>
+</td>
+</tr>
+<tr>
+	<td>DPV output:</td><td><button type="button" class="btn btn-primary" id="gimme_dpv" disabled><i class="bi bi-file-earmark-arrow-down"></i>&nbsp;Gimme</button>
+	&nbsp;<b id="disclaimer_notice">You need to accept the disclaimer first!</b>
+	</td>
+</tr>
+<tr><td>&nbsp;</td><td></td></tr>
+
+<tr>
+	<td>PCB:</td>
+	<td>
+		<b>Size:</b>&nbsp;<span id="pcb_size">-</span>&semi;&nbsp;
+		<b>PnP origin</b>:&nbsp;<span id="pnp_origin">-</span>&semi;&nbsp;
+		(KiCad version: <span id="kicad_version">-</span>)
+	</td>
+</tr>
+
+<tr>
+<td>Display origin:</td>
+<td>
+	<div class="form-check form-check-inline">
+	  <input class="form-check-input" type="radio" name="origin_select" id="origin_aux" value="aux" checked>
+	  <label class="form-check-label" for="origin_aux">Pick&amp;Place</label>
+	</div>
+	<div class="form-check form-check-inline">
+	  <input class="form-check-input" type="radio" name="origin_select" id="origin_kicad" value="kicad">
+	  <label class="form-check-label" for="origin_kicad">KiCad</label>
+	</div>
+	(DPV output will always use Pick&amp;Place origin)
+</td>
+</tr>
+<tr>
+<td></td>
+<td>
+	<div class="form-check">
+	  <input class="form-check-input" type="checkbox" value="" id="show_unused">
+	  <label class="form-check-label" for="show_unused">Show unused material</label>
+	</div>
+	<button type="button" class="btn btn-secondary btn-sm" id="place_all">Place all</button>
+	<button type="button" class="btn btn-secondary btn-sm" id="place_none">Place none</button>
+</td>
+</tr>
+
+ </table> <!-- settings / control table -->
+
+ <br>
+
+ <h4>Components:</h4>
+ <p></p>
+ <div id="assignments"></div>
+
+<div hidden> <!-- templates -->
+
+	<span id="ctl-"> <!-- controls: checkbox + up/down toggle buttons -->
+		<input class="form-check-input" type="checkbox" value="" id="ctl_check-" checked>
+		<button type="button" class="btn btn-secondary" id="ctl_down-" style="--bs-btn-padding-y: 0rem; --bs-btn-padding-x: .15rem; --bs-btn-font-size: .75rem;">
+			<i class="bi bi-arrow-bar-down"></i>
+		</button>
+		<button type="button" class="btn btn-secondary" id="ctl_up-" style="--bs-btn-padding-y: 0rem; --bs-btn-padding-x: .15rem; --bs-btn-font-size: .75rem;">
+			<i class="bi bi-arrow-bar-up"></i>
+		</button>
+	</span> <!-- controls -->
+ 
+	<div class="card" id="component_card-">
+	  <div class="card-header">
+		<h5>
+			<span id="comp_name-"></span>&nbsp;
+			<code id="comp_desc-"></code>&nbsp;
+			<span id="comp_orientation-"></span>&nbsp;
+			<span id="comp_nozzle-"></span>&nbsp;
+			<span id="comp_vision-" hidden><i class="bi bi-eye-fill"></i></span>&nbsp;
+			<span id="comp_vacuum-" hidden><i class="bi bi-eyedropper"></i></span>
+		</h5>
+	  </div> <!-- card-header -->
+
+	  <div class="card-body">
+		  <div id="comp_none-" hidden>None</div>
+		<!-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> -->
+		<table class="table-sm" id="comp_table-">
+			<thead>
+			  <tr>
+				<th scope="col" hidden id="comp_place-"><i class="bi bi-download"></i></th>
+				<th scope="col" hidden id="comp_id-">Id</th>
+				<th scope="col" hidden id="comp_value-">Value</th>
+				<th scope="col" hidden id="comp_fp-">Footprint</th>
+				<th scope="col" hidden id="comp_x-">X</th>
+				<th scope="col" hidden id="comp_y-">Y</th>
+				<th scope="col" hidden id="comp_rot-"><i class="bi bi-arrow-clockwise"></i></th>
+				<th scope="col" hidden id="comp_td_vision-"><i class="bi bi-eye-fill"></i></th>
+				<th scope="col" hidden id="comp_td_vacuum-"><i class="bi bi-eyedropper"></i></th>
+				<!-- <th scope="col"><i class="bi bi-border-inner"></i></th> -->
+			  </tr>
+			</thead>
+			<tbody id="comp_tbody-" class="table-group-divider"></tbody>
+		  </table>
+	  </div> <!-- card body -->
+	</div> <!-- component card -->
+
+</div> <!-- end of templates -->
+
+<div class="modal fade" id="server_pcbs_modal" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl modal-dialog-scrollable"> <!-- modal-dialog-centered -->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="btn btn-secondary btn-sm" id="refresh_server_pcbs"><i class="bi bi-arrow-clockwise"></i>&nbsp;Refresh</button>&nbsp;&nbsp;
+        <h3 class="modal-title fs-5" id="ModalLabel">KiCad PCBs:</h3>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+		<table class="table table-hover table-sm">
+		  <thead>
+			<tr>
+			  <!-- <th scope="col"></th> -->
+			  <th scope="col">
+				  <button type="button" class="btn btn-secondary" id="sort_Fname" style="--bs-btn-padding-y: 0rem; --bs-btn-padding-x: .15rem; --bs-btn-font-size: .75rem;">
+					  <i class="bi bi-arrow-down-up"></i></button>&nbsp;
+					File</th>
+			  <th scope="col">
+				  <button type="button" class="btn btn-secondary" id="sort_ModTime" style="--bs-btn-padding-y: 0rem; --bs-btn-padding-x: .15rem; --bs-btn-font-size: .75rem;">
+					  <i class="bi bi-arrow-down-up"></i></button>&nbsp;
+				  Last modified</th>
+			  <th scope="col">
+				<button type="button" class="btn btn-secondary" id="sort_Dir" style="--bs-btn-padding-y: 0rem; --bs-btn-padding-x: .15rem; --bs-btn-font-size: .75rem;">
+					<i class="bi bi-arrow-down-up"></i></button>&nbsp;
+			  Path</th>
+			</tr>
+		  </thead>
+		  <tbody class="table-group-divider" id="pcbs_list">
+		  </tbody>
+		</table>
+      </div>
+    </div> <!-- content -->
+  </div> <!-- dialog -->
+</div> <!-- modal -->
+
+  <script src="bootstrap-5.3.0-alpha1-dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+  <script src="s_expression.js"></script>
+  <script src="kicad_chmt36.js"></script>
+  <script src="themeswitch.js"></script>
+</body>
+</html>

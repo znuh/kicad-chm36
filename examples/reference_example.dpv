@@ -1,0 +1,41 @@
+separated
+FILE,reference_Apr2023.dpv
+PCBFILE,pnp_test-top.pos
+DATE,2023/04/30
+TIME,18:46:53
+PANELYPE,0
+
+Table,No.,ID,DeltX,DeltY,FeedRates,Note,Height,Speed,Status,SizeX,SizeY,HeightTake,DelayTake,nPullStripSpeed
+Station,0,2,-1.12,1.35,2,0.1uF 25V X5R 10% fp:C_0402_1005Metric pn:CL05A104KA5NNNC,0.5,0,6,0,0,0,0,0
+Station,1,3,-1.07,1.12,2,10k 0.0625W 50V 1% 100ppm fp:R_0402_1005Metric pn:RC1005F103CS,0.5,0,6,0,0,0,0,0
+Station,2,4,-0.93,1.03,4,0.1uF 16V X7R 10% fp:C_0603_1608Metric pn:CL10B104KO8NNNC,0.5,0,6,80,160,0,0,0
+Station,3,5,-1.12,1.12,4,10k 0.1W 50V 1% 100ppm fp:R_0603_1608Metric pn:MCR03ERTF1002,0.5,0,6,80,160,0,0,0
+Station,4,6,-1,1.13,2,1k 0.0625W 50V 1% 100ppm fp:R_0402_1005Metric pn:0402WGF1001TCE,0.5,0,6,0,0,0,0,0
+Station,5,7,-1.12,0.94,2,5.1k 0.0625W 50V 1% 100ppm fp:R_0402_1005Metric pn:RC0402FR-075K1L,0.5,0,6,0,0,0,0,0
+Station,6,8,-0.85,1.03,2,47k 0.0625W 50V 1% 100ppm fp:R_0402_1005Metric pn:0402WGF4702TCE,0.5,0,6,0,0,0,0,0
+Station,7,9,-1.2,1.23,2,100k 0.0625W 50V 1% 100ppm fp:R_0402_1005Metric pn:0402WGF1003TCE,0.5,0,6,0,0,0,0,0
+Station,8,10,-1.52,1.18,4,4.7uF 10V X5R 10% fp:C_0603_1608Metric pn:CGB3B1X5R1A475K055AC,0.5,0,6,0,0,0,0,0
+Station,9,11,-1,1.37,4,600R 1.0A fp:L_0603_1608Metric pn:742792651,0.5,0,6,0,0,0,0,0
+Station,10,12,-1.22,1.36,4,22uF 16V X5R 20% fp:C_0805_2012Metric pn:EMK212BBJ226MG-T,1.25,0,6,0,0,0,0,0
+
+Table,No.,ID,DeltX,DeltY
+Panel_Coord,0,1,0,0
+
+Table,No.,ID,PHead,STNo.,DeltX,DeltY,Angle,Height,Skip,Speed,Explain,Note
+EComponent,0,61,1,3,20.8,4.45,0,0.5,2,0,R25,10k-R_0402_1005Metric
+EComponent,1,65,1,3,21.89,4.45,0,0.5,2,0,R29,10k-R_0402_1005Metric
+EComponent,2,69,1,3,23,4.48,0,0.5,2,0,R33,10k-R_0402_1005Metric
+EComponent,3,49,1,3,24,4.45,0,0.5,2,0,R13,10k-R_0402_1005Metric
+
+Table,No.,ID,CenterX,CenterY,IntervalX,IntervalY,NumX,NumY,Start
+
+Table,No.,nType,nAlg,nFinished
+PcbCalib,0,1,1,1
+
+Table,No.,ID,offsetX,offsetY,Note
+CalibPoint,0,1,4.7,1.12,Mark1
+CalibPoint,1,2,28.39,25.3,Mark2
+CalibPoint,2,3,6.4,25,Mark3
+
+Table,No.,PCBX1,PCBY1,PCBX2,PCBY2,PCBX3,PCBY3,SMTX1,SMTY1,SMTX2,SMTY2,SMTX3,SMTY3,DeltaAngle
+CalibFator,0,470,112,2839,2530,640,2500,11701,8032,14081,10437,11876,10415,0
