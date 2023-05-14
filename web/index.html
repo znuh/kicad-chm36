@@ -18,12 +18,12 @@
 <body>
 
 <!-- warning for missing window.showSaveFilePicker -->
-<div class="alert alert-warning alert-dismissible fade show" id="no_SaveFilePicker" role="alert" style="max-width: 800px" hidden>
-  <h4 class="alert-heading"><i class="bi bi-exclamation-triangle-fill"></i>&nbsp;Notice</h4>
+<div class="alert alert-info alert-dismissible fade show" id="no_SaveFilePicker" role="alert" style="max-width: 800px" hidden>
+  <h4 class="alert-heading"><i class="bi bi-info-circle"></i>&nbsp;Notice</h4>
   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
   <p>Showing a <i>Save As...</i> dialog for the generated DPV file will not work (because <i>window.showSaveFilePicker</i> ist not available).<br>
   Instead your browser will download the generated DPV file without showing the <i>Save As...</i> dialog.
-  This can usually be resolved by switching to <b>HTTPS instead of HTTP</b>.
+  The dialog usually works with the <b>Chromium/Chrome</b> browser and a <b>HTTPS</b> connection instead of HTTP.
   </p>
 </div>
 
