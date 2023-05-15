@@ -11,7 +11,8 @@ Interactive Web Browser based KiCad PCB to CHM-T36VA Pick&amp;Place File Convert
 * Chromium/Chrome instead of Firefox is recommended because Firefox does not (yet) implement the [window.showSaveFilePicker](https://developer.mozilla.org/en-US/docs/Web/API/Window/showSaveFilePicker#browser_compatibility) method. (Firefox will still work, but it'll just download the generated pick&amp;place file instead of showing a Save File Dialog.)
 
 ## Using the accompanying Golang Webserver in `server/`
-**Note:** This webserver is optional. You can use any HTTPS webserver. This server offers an additional feature (see below) - if you don't need it you can use any HTTPS server. (You can then skip this section.)
+**Note:** This webserver is optional. You can use any HTTPS webserver. This server offers an additional feature (see below) - if you don't need it you can use any HTTPS server. (You can then skip this section.)  
+**Note:** While the server per se should work on Windows as well, instructions below are for UNIX-like Operating Systems (e.g. Linux, OSX, \*BSD).
 
 `server/` contains a small HTTPS server written in Golang. Apart from serving the `web/` directory via HTTPS, this server can also serve all KiCad PCBs from a user-specified directory and all subdirectories. This can improve your workflow if the PCB files are located on a different machine than the PnP machine is connected to. You can also reload PCB files after they changed.  
 It looks like this on the client side:  
