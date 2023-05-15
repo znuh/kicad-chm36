@@ -16,9 +16,29 @@
   </style>
 </head>
 <body>
-<a href="https://github.com/znuh/kicad-chm36">KiCad to CHM-T36VA Converter</a> v0.1&nbsp;
+<a href="https://github.com/znuh/kicad-chm36">KiCad to CHM-T36VA Converter</a>&nbsp;<span id="version-info"></span>&nbsp;
 <a href="https://github.com/znuh/kicad-chm36/blob/main/README.md">Help</a>&nbsp;
 <br>
+
+<!-- Release Notes -->
+<div class="alert alert-success alert-dismissible fade show" id="release_notes" role="alert" style="max-width: 800px" hidden>
+  <h4 class="alert-heading"><span id="version-relnotes"></span>&nbsp;Release Notes</h4>
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  <p>Initial version.<br>
+	  <div>Missing features:
+		  <ul>
+			  <li>PCB height cannot be set (yet)</li>
+			  <li>Single PCB mode only (no batch/array mode yet)</li>
+			  <li>Centroid correction not supported yet</li>
+		  </ul>
+	  </div>
+  </p>
+<hr>
+	<div class="form-check">
+	  <input class="form-check-input devmode-check" type="checkbox" value="" id="hide_relnotes">
+	  <label class="form-check-label" for="hide_relnotes">Don't show again for this version</label>
+	</div>
+</div>
 
 <!-- notice for missing window.showSaveFilePicker -->
 <div class="alert alert-info alert-dismissible fade show" id="no_SaveFilePicker" role="alert" style="max-width: 800px" hidden>
@@ -35,7 +55,7 @@
   <h4 class="alert-heading"><i class="bi bi-exclamation-triangle-fill"></i>&nbsp;Disclaimer</h4>
   <p><b>This software probably has bugs.</b><br>
   Such bugs can lead to a <b>faulty DPV file</b> which can result in <b>damage to your PCBs, the pick&amp;place machine, your components</b> and maybe even lead to <b>personal injury.</b><br>
-  Therefore you must <b>check the generated DPV file carefully</b> and use it with due caution.<br>
+  Therefore you must <b>check the generated DPV file carefully</b> and use it with due caution.</p>
   <p>THE SOFTWARE IS PROVIDED &#8220;AS IS&#8221;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
   <hr>
 	<div class="form-check">

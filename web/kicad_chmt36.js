@@ -23,6 +23,8 @@
 // OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
+const version   = "0.1-dev1";
+
 const precision = 2; // round to 2 digits after decimal point
 
 /* PCB data
@@ -968,6 +970,7 @@ document.addEventListener("DOMContentLoaded", function() {
 	// load last DPV (if any) - will trigger a reassign_components + redraw in any case
 	DpvLoader(localStorage.getItem("last_dpv"));
 
+	// register various event handlers
 	document.getElementById('kicad_file').addEventListener('change', e => fileReader(e,KicadLoader), false);
 	document.getElementById('dpv_file').addEventListener('change',   e => fileReader(e,DpvLoader),   false);
 	document.querySelectorAll('input[name="side_select"]').forEach(n => n.addEventListener('change', reassign_components));
@@ -985,6 +988,8 @@ document.addEventListener("DOMContentLoaded", function() {
 		document.getElementById('disclaimer_notice').hidden = e.target.checked;
 		update_gimme_btn();
 	});
+
+	// devmode stuff
 	if(localStorage.getItem('devmode') == 'shibboleet') {
 		document.querySelectorAll("[class~='devmode-enable']").forEach(n => n.disabled = false);
 		document.querySelectorAll("[class~='devmode-hide']").forEach(  n => n.hidden   = true);
@@ -994,6 +999,20 @@ document.addEventListener("DOMContentLoaded", function() {
 			n.dispatchEvent(new Event('change'));
 		});
 	}
-	const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
-	const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+
+	// finalize tooltips
+	const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+	const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
+
+	// sprinkle all suitable nodes with the current version
+	document.querySelectorAll("[id^='version-']").forEach(n => n.textContent = "v" + version);
+
+	// release notes
+	document.getElementById('release_notes').hidden = localStorage.getItem('hide_relnotes') == version;
+	document.getElementById('hide_relnotes').addEventListener('change', e => {
+		if(!e.target.checked) return;
+		localStorage.setItem('hide_relnotes', version);
+		document.getElementById('release_notes').hidden = true;
+	});
+
 });
