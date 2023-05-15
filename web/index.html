@@ -24,15 +24,14 @@
 <div class="alert alert-success alert-dismissible fade show" id="release_notes" role="alert" style="max-width: 800px" hidden>
   <h4 class="alert-heading"><span id="version-relnotes"></span>&nbsp;Release Notes</h4>
   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-  <p>Initial version.<br>
-	  <div>Missing features:
-		  <ul>
-			  <li>PCB height cannot be set (yet)</li>
-			  <li>Single PCB mode only (no batch/array mode yet)</li>
-			  <li>Centroid correction not supported yet</li>
-		  </ul>
-	  </div>
-  </p>
+  <p>Initial version.</p>
+  <div>Missing features:
+	  <ul>
+		  <li>PCB height cannot be set (yet)</li>
+		  <li>Single PCB mode only (no batch/array mode yet)</li>
+		  <li>Centroid correction not supported yet</li>
+	  </ul>
+  </div>
 <hr>
 	<div class="form-check">
 	  <input class="form-check-input devmode-check" type="checkbox" value="" id="hide_relnotes">
@@ -78,7 +77,7 @@
       <path d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
     </svg>
   </label>
-  <input class="form-check-input" type="checkbox" id="lightSwitch" />
+  <input class="form-check-input" type="checkbox" id="lightSwitch">
     </li>
   </ul>
 </div>
@@ -90,7 +89,7 @@
 			 <label for="dpv_file">DPV reference:</label><br>&nbsp;
 		</td>
 		 <td>
-			 <input type="file" id="dpv_file" accept=".dpv"/>
+			 <input type="file" id="dpv_file" accept=".dpv">
 			 <br>
 			 <span id="dpv_filename"></span>&nbsp;<span id="dpv_date"></span>
 		 </td>
@@ -99,7 +98,7 @@
 		 <td><label for="kicad_file">KiCad PCB:</label><br>&nbsp;</td>
 		 <td>
 			 <button type="button" class="btn btn-secondary btn-sm" id="pcbs_server" data-bs-toggle="modal" data-bs-target="#server_pcbs_modal" hidden>Fetch from server</button>
-			 <input type="file" id="kicad_file" accept=".kicad_pcb"/><br>
+			 <input type="file" id="kicad_file" accept=".kicad_pcb"><br>
 			 <button type="button" class="btn btn-secondary btn-sm" id="reload_pcb" hidden><i class="bi bi-arrow-clockwise"></i>&nbsp;Reload</button>&nbsp;<a href="#" id="pcb_link" hidden></a><span id="kicad_filename"></span>&nbsp;<span id="kicad_date"></span>
 		 </td>
 	 </tr>
