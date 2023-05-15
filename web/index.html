@@ -62,9 +62,13 @@
 
  <table> <!-- settings / control table -->
 	 <tr>
-		 <td><label for="dpv_file">DPV reference:</label><br>&nbsp;</td>
 		 <td>
-			 <input type="file" id="dpv_file" accept=".dpv"/><br>
+			 <i class="bi bi-info-circle-fill" data-tt-persist="true" data-bs-toggle="tooltip" data-bs-tooltip-max-width="600px" data-bs-html="true" data-bs-title="An existing pick&amp;place DPV file is needed for reference.<br>Feeder and ICTray definitions will be taken from this file and it will be used as a template to generate DPV files.<br>The last used reference file will be kept in the localStorage of your browser and will be reused unless you specify a new reference file."></i>
+			 <label for="dpv_file">DPV reference:</label><br>&nbsp;
+		</td>
+		 <td>
+			 <input type="file" id="dpv_file" accept=".dpv"/>
+			 <br>
 			 <span id="dpv_filename"></span>&nbsp;<span id="dpv_date"></span>
 		 </td>
 	 </tr>
@@ -109,6 +113,7 @@
 	<td>PCB:</td>
 	<td>
 		<b>Size:</b>&nbsp;<span id="pcb_size">-</span>&semi;&nbsp;
+		<i class="bi bi-info-circle-fill" data-tt-persist="true" data-bs-toggle="tooltip" data-bs-tooltip-max-width="600px" data-bs-html="true" data-bs-title="The aux axis origin will be used if set.<br>Otherwise the lower left corner will be used as origin."></i>
 		<b>PnP origin</b>:&nbsp;<span id="pnp_origin">-</span>&semi;&nbsp;
 		(KiCad version: <span id="kicad_version">-</span>)
 	</td>
