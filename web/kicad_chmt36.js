@@ -535,6 +535,11 @@ function make_component_card(target, feeder_idx, feeder, show_unused) {
 	target.appendChild(card);
 }
 
+function update_tooltips() {
+	const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+	const tooltipList = [...tooltipTriggerList].map(elem => bootstrap.Tooltip.getOrCreateInstance(elem));
+}
+
 function redraw_list() {
 	// origin select
 	const origin_sel = document.querySelector('input[name="origin_select"]:checked').value;
@@ -556,6 +561,7 @@ function redraw_list() {
 
 	// make card for indeterminate (unassigned) components
 	make_component_card(target, "Indeterminate", null, show_unused);
+	update_tooltips();
 }
 
 function get_extents(pcb) {
@@ -1000,9 +1006,7 @@ document.addEventListener("DOMContentLoaded", function() {
 		});
 	}
 
-	// finalize tooltips
-	const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
-	const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
+	update_tooltips();
 
 	// sprinkle all suitable nodes with the current version
 	document.querySelectorAll("[id^='version-']").forEach(n => n.textContent = "v" + version);

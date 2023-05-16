@@ -85,7 +85,7 @@
  <table> <!-- settings / control table -->
 	 <tr>
 		 <td>
-			 <i class="bi bi-info-circle-fill" data-tt-persist="true" data-bs-toggle="tooltip" data-bs-tooltip-max-width="600px" data-bs-html="true" data-bs-title="An existing pick&amp;place DPV file is needed for reference.<br>Feeder and ICTray definitions will be taken from this file and it will be used as a template to generate DPV files.<br>The last used reference file will be kept in the localStorage of your browser and will be reused unless you specify a new reference file."></i>
+			 <i class="bi bi-info-circle-fill" data-bs-toggle="tooltip" data-bs-tooltip-max-width="600px" data-bs-html="true" data-bs-title="An existing pick&amp;place DPV file is needed for reference.<br>Feeder and ICTray definitions will be taken from this file and it will be used as a template to generate DPV files.<br>The last used reference file will be kept in the localStorage of your browser and will be reused unless you specify a new reference file."></i>
 			 <label for="dpv_file">DPV reference:</label><br>&nbsp;
 		</td>
 		 <td>
@@ -135,7 +135,7 @@
 	<td>PCB:</td>
 	<td>
 		<b>Size:</b>&nbsp;<span id="pcb_size">-</span>&semi;&nbsp;
-		<i class="bi bi-info-circle-fill" data-tt-persist="true" data-bs-toggle="tooltip" data-bs-tooltip-max-width="600px" data-bs-html="true" data-bs-title="The aux axis origin will be used if set.<br>Otherwise the lower left corner will be used as origin."></i>
+		<i class="bi bi-info-circle-fill" data-bs-toggle="tooltip" data-bs-tooltip-max-width="600px" data-bs-html="true" data-bs-title="The aux axis origin will be used if set.<br>Otherwise the lower left corner will be used as origin."></i>
 		<b>PnP origin</b>:&nbsp;<span id="pnp_origin">-</span>&semi;&nbsp;
 		(KiCad version: <span id="kicad_version">-</span>)
 	</td>
@@ -192,10 +192,10 @@
 		<h5>
 			<span id="comp_name-"></span>&nbsp;
 			<code id="comp_desc-"></code>&nbsp;
-			<span id="comp_orientation-"></span>&nbsp;
-			<span id="comp_nozzle-"></span>&nbsp;
-			<span id="comp_vision-" hidden><i class="bi bi-eye-fill"></i></span>&nbsp;
-			<span id="comp_vacuum-" hidden><i class="bi bi-eyedropper"></i></span>
+			<span id="comp_orientation-" data-bs-toggle="tooltip" data-bs-tooltip-max-width="600px" data-bs-html="true" data-bs-title='Component orientation in feeder.<br>This value can be specified in the DPV reference with orientation:<i>angle</i> (e.g. orientation:90) in the <i>Note</i> field of the feeder definition.<br>If no orientation is given a default value of +90° for feeder IDs below 60 (reel feeders) and 0° for feeder IDs 60 and above (tray feeders) is used.'></span>&nbsp;
+			<span id="comp_nozzle-" data-bs-toggle="tooltip" data-bs-tooltip-max-width="600px" data-bs-html="true" data-bs-title="TBD"></span>&nbsp;
+			<span id="comp_vision-" data-bs-toggle="tooltip" data-bs-tooltip-max-width="600px" data-bs-html="true" data-bs-title="TBD" hidden><i class="bi bi-eye-fill"></i></span>&nbsp;
+			<span id="comp_vacuum-" data-bs-toggle="tooltip" data-bs-tooltip-max-width="600px" data-bs-html="true" data-bs-title="TBD" hidden><i class="bi bi-eyedropper"></i></span>
 		</h5>
 	  </div> <!-- card-header -->
 
@@ -205,15 +205,15 @@
 		<table class="table-sm" id="comp_table-">
 			<thead>
 			  <tr>
-				<th scope="col" hidden id="comp_place-"><i class="bi bi-download"></i></th>
+				<th scope="col" hidden id="comp_place-" data-bs-toggle="tooltip" data-bs-tooltip-max-width="600px" data-bs-html="true" data-bs-title="place component?"><i class="bi bi-download"></i></th>
 				<th scope="col" hidden id="comp_id-">Id</th>
 				<th scope="col" hidden id="comp_value-">Value</th>
 				<th scope="col" hidden id="comp_fp-">Footprint</th>
 				<th scope="col" hidden id="comp_x-">X</th>
 				<th scope="col" hidden id="comp_y-">Y</th>
-				<th scope="col" hidden id="comp_rot-"><i class="bi bi-arrow-clockwise"></i></th>
-				<th scope="col" hidden id="comp_td_vision-"><i class="bi bi-eye-fill"></i></th>
-				<th scope="col" hidden id="comp_td_vacuum-"><i class="bi bi-eyedropper"></i></th>
+				<th scope="col" hidden id="comp_rot-" data-bs-toggle="tooltip" data-bs-tooltip-max-width="600px" data-bs-html="true" data-bs-title="component rotation"><i class="bi bi-arrow-clockwise"></i></th>
+				<th scope="col" hidden id="comp_td_vision-" data-bs-toggle="tooltip" data-bs-tooltip-max-width="600px" data-bs-html="true" data-bs-title="use vision for placing"><i class="bi bi-eye-fill"></i></th>
+				<th scope="col" hidden id="comp_td_vacuum-" data-bs-toggle="tooltip" data-bs-tooltip-max-width="600px" data-bs-html="true" data-bs-title="use vaccum detection"><i class="bi bi-eyedropper"></i></th>
 				<!-- <th scope="col"><i class="bi bi-border-inner"></i></th> -->
 			  </tr>
 			</thead>
@@ -224,6 +224,7 @@
 
 </div> <!-- end of templates -->
 
+<!-- server PCBs list modal -->
 <div class="modal fade" id="server_pcbs_modal" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-xl modal-dialog-scrollable"> <!-- modal-dialog-centered -->
     <div class="modal-content">
