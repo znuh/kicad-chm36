@@ -1,9 +1,18 @@
 # kicad-chm36
 Interactive Web Browser based KiCad PCB to CHM-T36VA Pick&amp;Place File Converter  
 
+This tool directly generates a CHM DPV file from a `.kicad_pcb` file (without exporting a `.pos` file in KiCad before).
+
 **Conversion is done entirely in the browser. No PCB or Pick&amp;Place data is sent to a server.**  
 Also, the tool only uses locally hosted (i.e. no external CDNs) [Bootstrap5](https://getbootstrap.com/) and vanilla Javascript **without** jQuery, Node.js, etc.
 
+## Current Limitations
+* PCB height cannot be set (yet)
+* Single PCB mode only (no batch/array mode yet)
+* Centroid correction not supported yet
+* PCBs should be KiCad Version 7.0 (other versions might or might not work)
+
+## Screenshot
 ![kicad_chm_screenshot](https://github.com/znuh/kicad-chm36/assets/198567/17b367d2-8736-4213-9c25-e0e0f709fa3d)
 
 ## Basic Installation Instructions
