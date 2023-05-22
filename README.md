@@ -56,5 +56,17 @@ This tool employs a reasonably intelligent approach for matching KiCad component
   * **Limitation 1:** Fractional notation (e.g. `1/8W`) isn't supported. Use notation with a decimal point (e.g. `0.125W`) instead.
   * **Limitation 2:** Temperature Coefficients such as **X7R** aren't recognized. This means that they must match exactly. A feeder with *X7R* in the note will not match a KiCad Value containing *X5R*. (If you don't add *X5R* to the KiCad value it can match the feeder if the other values are ok.)
 
+The DPV and KiCad PCB files from the [examples](https://github.com/znuh/kicad-chm36/tree/main/examples) directory are selected to demonstrate several of the matching rules explained here.
+
+### Feeder Note Example: ###
+`0.1uF 25V X5R 10% fp:C_0402_1005Metric pn:CL05A104KA5NNNC`  
+Note 1: I usually add the exact part number marked with `pn:` at the end of the Feeder Note. This does not break component matching. (But you *could* set the KiCad Value to `pn:CL05A104KA5NNNC` so ensure only a feeder with this exact part number does match.  
+Note 2: I also prefer to prefix the footprint with `fp:` in the Feeder Note. This is also ok because for a match to occur the KiCad footprint identifier (`C_0402_1005Metric`) only needs to be found *somewhere* in the Feeder Note.
+
+## Additional Feeder Params
+Named params. Colon separated Name:Value
+* Nozzle: 1 default
+* Component Rotation: +90° default for Feeder IDs below 60
+
 ## Preparing a DPV Reference File
 TBD
