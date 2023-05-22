@@ -32,9 +32,11 @@ After this works you should modify the `./run_server.sh` script to fit your need
 **Note:** The DPV reference file must be located on the client. The server does not offer a DPV reference file to the client.
 
 ## Matching PCB Components to Pick&amp;Place Feeders
-The CHM DPV (CSV) file format doesn't have dedicated fields for listing the params of the components held by the feeders. There is only a `Note` field which can be used to store component information for a feeder. Instead of using an extra file to hold the component params for the feeders, this tool expects all relevant component params in the `Note` field of the feeder definitions.
+The CHM DPV (CSV) file format doesn't have dedicated fields for listing the params of the components held by the feeders. There is only a `Note` field which can be used to store component information for a feeder. Instead of using an extra file to hold the component params for the feeders, this tool expects all relevant component params in the `Note` field of the feeder definitions.  
+When entering the `Note` for a feeder, the CharmHigh software restricts the number of characters and blocks several characters. This can be overcome by using a text editor to edit the `Note` field. (Any simple editor such as Notepad is fine.) A long `Note` field is usually fine for the CHM software when loading a DPV file - even long Notes are usually displayed just fine. The length limit is only imposed during user input.  
+When modifying the `Note` field with an editor you can also use nearly all characters such as spaces, dots and (semi)colons. **You must not use commas and line breaks though** because DPV files are CSV files with a comma separator. You cannot escape commas and quoting text also does not help. So just don't put a comma (or a line break) into the `Note` field.
 
-When entering the `Note` for a feeder, the CharmHigh software restricts the number of characters and blocks several characters. This can be overcome by using a text editor to edit the `Note` field. (Any simple editor such as Notepad is fine.) The 
+
 
 TBD - reasonably intelligent matching
 
