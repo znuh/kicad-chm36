@@ -741,8 +741,9 @@ function KicadLoader(str, fname, server_path, mod_time) {
 	const kicad_version    = (pcb.raw_pcb?.[1]?.[0] == "version") ? pcb.raw_pcb?.[1]?.[1] : "unknown";
 	const kicad_version_ok = !isNaN(kicad_version) && (+kicad_version >= required_kicad_version[0]) && (+kicad_version <= required_kicad_version[1]);
 
-	document.getElementById('kicad_version').textContent    = kicad_version;
-	document.getElementById('kicad_version').style.color    = kicad_version_ok ? "" : "rgb(var(--bs-warning-rgb))";
+	const kv_node          = document.getElementById('kicad_version');
+	kv_node.textContent    = kicad_version;
+	kv_node.style.color    = "rgb(var(--bs-" + (kicad_version_ok ? "success" : "warning") + "-rgb))";
 	document.getElementById('kicad_version_warning').hidden = kicad_version_ok;
 
 	const remote         = server_path != null;
