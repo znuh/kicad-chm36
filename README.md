@@ -2,7 +2,7 @@
 Interactive Web Browser based KiCad PCB to CHM-T36VA Pick&amp;Place File Converter  
 
 **Conversion is done entirely in the browser. No PCB or Pick&amp;Place data is sent to a server.**  
-Also, the tool only uses locally hosted [Bootstrap5](https://getbootstrap.com/) and vanilla Javascript. No external CDN, jQuery, Node.js, etc. is used.
+Also, the tool only uses locally hosted (no external CDNs are used) [Bootstrap5](https://getbootstrap.com/) and vanilla Javascript **without** jQuery, Node.js, etc.
 
 ![kicad_chm_screenshot](https://github.com/znuh/kicad-chm36/assets/198567/17b367d2-8736-4213-9c25-e0e0f709fa3d)
 
