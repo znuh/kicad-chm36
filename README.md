@@ -69,7 +69,7 @@ The CHM DPV file format doesn't store the nozzle to use for a feeder in the Feed
 * `nozzle:1` sets the nozzle to 1 (left nozzle). Nozzle 2 is the right nozzle. **Nozzle 1** will be used as the **default** when no **nozzle** param is given. (So you can just omit `nozzle:1` for nozzle 1.)
 * `orientation:<angle>` can be used to specify the component rotation in a feeder relative to the KiCad 0° orientation. For reel feeders (Feeder IDs below 60) this is usually +90° (resulting in a -90° rotation to apply for a KiCad component with 0° orientation.)  
 Specify the orientation without the degree sign - e.g. `orientation:90` / `orientation:-90`.  
-If no component orientation is given for a feeder a default orientation is selected based on the **Feeder ID**:
+When no component orientation is given for a feeder a default orientation is selected based on the **Feeder ID**:
   * The default for IDs *below 60* (reel feeders) is a component orientation of +90°
   * The default for ID 60 and above (IC trays and vibration feeders) is 0°  
 (You can omit the `orientation:` param when the default orientation is correct.)
