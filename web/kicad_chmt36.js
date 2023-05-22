@@ -23,7 +23,8 @@
 // OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-const version   = "0.1-dev1";
+const version = "0.1-dev1";
+const required_kicad_version = [20221018, 20221018];
 
 const precision = 2; // round to 2 digits after decimal point
 
@@ -737,8 +738,12 @@ function KicadLoader(str, fname, server_path, mod_time) {
 	document.getElementById('pcb_size').textContent =
 		pcb.extents.size.w + " x " + pcb.extents.size.h + " mm";
 
-	document.getElementById('kicad_version').textContent =
-		(pcb.raw_pcb?.[1]?.[0] == "version") ? pcb.raw_pcb?.[1]?.[1] : "unknown";
+	const kicad_version    = (pcb.raw_pcb?.[1]?.[0] == "version") ? pcb.raw_pcb?.[1]?.[1] : "unknown";
+	const kicad_version_ok = !isNaN(kicad_version) && (+kicad_version >= required_kicad_version[0]) && (+kicad_version <= required_kicad_version[1]);
+
+	document.getElementById('kicad_version').textContent    = kicad_version;
+	document.getElementById('kicad_version').style.color    = kicad_version_ok ? "" : "rgb(var(--bs-warning-rgb))";
+	document.getElementById('kicad_version_warning').hidden = kicad_version_ok;
 
 	const remote         = server_path != null;
 	const pcb_link       = document.getElementById('pcb_link');
