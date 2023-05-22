@@ -36,9 +36,15 @@ The CHM DPV (CSV) file format doesn't have dedicated fields for listing the para
 When entering the `Note` for a feeder, the CharmHigh software restricts the number of characters and blocks several characters. This can be overcome by using a text editor to edit the `Note` field. (Any simple editor such as Notepad is fine.) A long `Note` field is usually fine for the CHM software when loading a DPV file - even long Notes are usually displayed just fine. The length limit is only imposed during user input.  
 When modifying the `Note` field with an editor you can also use nearly all characters such as spaces, dots and (semi)colons. **You must not use commas and line breaks though** because DPV files are CSV files with a comma separator. You cannot escape commas and quoting text also does not help. So just don't put a comma (or a line break) into the `Note` field.
 
-
-
-TBD - reasonably intelligent matching
+This tool employs a reasonably intelligent approach for matching KiCad components to Pick&amp;Place feeders. A match occurs when the following conditions are satisfied:
+* The KiCad **footprint** identifier (e.g. `C_0402_1005Metric`) must be found somewhere in the feeder Note.
+* After this the **KiCad Value** and the **Feeder Note** are treated as lists of whitespace separated params. (i.e. you put at least one space between different params - e.g.: `1uF 10V X5R`)
+* The **first value** in this list is called the *primary value*. The *primary value* from KiCad and a feeder must match.  
+  * **Units** are optional - e.g.`10k` as the primary KiCad value will match a `10k` and a `10kR` feeder note.  
+(Units are optional because the KiCad footprint identifier already includes the component type C/R/etc.)
+  * However, if both the KiCad primary value and the Feeder Note primary value have a unit then these units must match.
+  * Units `R` and `Ω` are treated as equivalent. (e.g. `10kR` and `10kΩ` will match)
+  * Value comparison honors **multipliers** such as `p/n/u/µ/m/k/M/G` - i.e. `0.1uF` matches `0.1µF`and `100nF`
 
 ## Preparing a DPV Reference File
 TBD
