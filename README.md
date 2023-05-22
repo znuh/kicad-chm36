@@ -63,10 +63,11 @@ The DPV and KiCad PCB files from the [examples](https://github.com/znuh/kicad-ch
 Note 1: I usually add the exact part number marked with `pn:` at the end of the Feeder Note. This does not break component matching. (But you *could* set the KiCad Value to `pn:CL05A104KA5NNNC` to ensure only a feeder with this exact part number does match.  
 Note 2: I also prefer to prefix the footprint with `fp:` in the Feeder Note. This is also ok because for a match to occur the KiCad footprint identifier (`C_0402_1005Metric`) only needs to be found *somewhere* in the Feeder Note.
 
-## Additional Feeder Params
-Named params. Colon separated Name:Value
-* Nozzle: 1 default
-* Component Rotation: +90° default for Feeder IDs below 60
+## Additional Named Feeder Params
+The CHM DPV file format doesn't store the Nozzle to use for a Feeder in the Feeder definition but in the individual component placement instruction (`PHead` as in PickHead in the `EComponent` lines). The CHM DPV file also does not store the rotation of components in a certain feeder. Instead there's only the relative rotation of a component to apply during placement of a component. (`Angle` in the `EComponent` lines.)  
+**Named Params** in the `Notes` field of a Feeder can be given to specify the **rotation** of components held in this feeder and to choose the Nozzle to use for the Feeder:
+* `nozzle:1` sets the nozzle to 1 (this ist the left nozzle). Nozzle 2 is the right nozzle. **Nozzle 1** will be used as the **default** when no **nozzle** param is given. (So you can just omit `nozzle:` for nozzle 1.)
+* `orientation:<angle>` can be used to specify the component rotation in a feeder relative to the KiCad 0° orientation. For reel feeders (Feeder ID below 60) this is usually +90° (resulting in a -90° rotation to apply for a KiCad component with 0° orientation.)
 
 ## Preparing a DPV Reference File
 TBD
