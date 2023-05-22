@@ -72,7 +72,7 @@ Specify the orientation without the degree sign - e.g. `orientation:90` / `orien
 When no component orientation is given for a feeder, a default orientation is selected based on the **Feeder ID**:
   * The default for IDs **below 60** (reel feeders) is a component orientation of +90°
   * The default for ID **60 and above** (IC trays and vibration feeders) is 0°  
-(You can omit the `orientation:` param when the default orientation is correct.)
+* You can omit the `orientation:` param when the default orientation is correct.
 
 ## Preparing a DPV Reference File
 TBD
