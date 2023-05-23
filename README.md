@@ -54,7 +54,7 @@ This tool employs a reasonably intelligent approach for matching KiCad component
 (Units are optional because the KiCad footprint identifier already includes the component type C/R/etc.)
   * However, if both the KiCad primary value and the Feeder Note primary value have a unit then these units must match.
   * Units `R` and `Ω` are treated as equivalent. (e.g. `10kR` and `10kΩ` will match)
-  * Value comparison honors **multipliers** such as `p/n/u/µ/m/k/M/G` - i.e. `0.1uF` matches `0.1µF`and `100nF`; `10000` and `10k` also match.
+  * Value comparison honors **multipliers** such as `p/n/u/µ/m/k/M/G` - i.e. `0.1uF` matches `0.1µF` and `100nF`; `10000` and `10k` also match.
   * **Limitation:** `1k5` will **not** match `1.5k`. Just avoid using the multiplier as the decimal point.
 * While the KiCad and Feeder Primary Values must be equal for a match, there are also *Secondary Values* such as **ratings and tolerances**. For these values the Feeder Value must be **same or better** than the KiCad Value for a match.
   * Secondary Values are recognized by their unit (ratings: `V/A/W`, tolerances: `%/ppm`). If they are not recognized as rating or tolerance they must match exactly.
