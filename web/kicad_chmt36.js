@@ -419,8 +419,8 @@ async function dpv_download() {
 				accept: { 'text/plain': ['.dpv'] },
 			}],
 		});
-		const fileStream = await fileHandle.createWritable(blobby);
-		await fileStream.write();
+		const fileStream = await fileHandle.createWritable();
+		await fileStream.write(blobby);
 		await fileStream.close();
 	} else { // window.showSaveFilePicker not available
 		const    a = document.createElement("a");
