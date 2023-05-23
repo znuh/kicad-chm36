@@ -13,7 +13,7 @@ Also, the tool only uses locally hosted (i.e. no external CDNs) [Bootstrap5](htt
 * PCBs should be KiCad Version 7.0 (other versions might or might not work)
 
 ## Screenshot
-![kicad_chm_screenshot](https://github.com/znuh/kicad-chm36/assets/198567/17b367d2-8736-4213-9c25-e0e0f709fa3d)
+![kicad_chm_screenshot](https://github.com/znuh/kicad-chm36/assets/198567/24559599-0d31-487c-ae23-d8bf4ccf174a)
 
 ## Basic Installation Instructions
 * make the contents of the `web/` directory available via a HTTPS server
