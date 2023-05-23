@@ -6,6 +6,8 @@ This tool directly generates a CHM DPV file from a `.kicad_pcb` file (without ex
 **Conversion is done entirely in the browser. No PCB or Pick&amp;Place data is sent to a server.**  
 Also, the tool only uses locally hosted (i.e. no external CDNs) [Bootstrap5](https://getbootstrap.com/) and vanilla Javascript **without** jQuery, Node.js, etc.
 
+You can try it here: [https://znu.nz/kicad-chm36/](https://znu.nz/kicad-chm36/)
+
 ## Current Limitations
 * PCB height cannot be set (yet)
 * Single PCB mode only (no batch/array mode yet)
