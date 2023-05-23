@@ -28,7 +28,7 @@ You can try it here: [https://znu.nz/kicad-chm36/](https://znu.nz/kicad-chm36/)
 
 `server/` contains a small HTTPS server written in Golang. Apart from serving the `web/` directory via HTTPS, this server can also serve all KiCad PCBs from a user-specified directory and all subdirectories. This can improve your workflow if the PCB files are located on a different computer than the PnP machine is connected to. You can also reload PCB files after they changed.  
 It looks like this on the client side:  
-![pcbs_server](https://github.com/znuh/kicad-chm36/assets/198567/dd1d0216-1b42-4eb6-a1cc-06b9c82a2649)  
+![pcbs_server](https://github.com/znuh/kicad-chm36/assets/198567/c80f3bbc-c0f8-4d3b-ac01-b8575b11d393)  
 To use the server you need to do the following:
 * Install a working Golang environment and OpenSSL (for HTTPS cert/key generation)
 * run `cd server/ && go build;cd ..`
