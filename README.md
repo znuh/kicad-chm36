@@ -15,7 +15,7 @@ You can try it here: [https://znu.nz/kicad-chm36/](https://znu.nz/kicad-chm36/)
 * PCBs should be KiCad Version 7.0 (other versions might or might not work)
 
 ## Screenshot
-![kicad_chm_screenshot](https://github.com/znuh/kicad-chm36/assets/198567/24559599-0d31-487c-ae23-d8bf4ccf174a)
+![kicad_chm_screenshot](https://github.com/znuh/kicad-chm36/assets/198567/c0ea7d35-5cbf-400e-8bc1-8fdafdb3e81b)
 
 ## Basic Installation Instructions
 * make the contents of the `web/` directory available via a HTTPS server
