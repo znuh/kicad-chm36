@@ -84,4 +84,6 @@ When no component orientation is given for a feeder, a default orientation is se
 * You can omit the `orientation:` param when the default orientation is correct.
 
 ## Preparing a DPV Reference File
-TBD
+Any existing DPV file can be used as a reference file - usually only minor modifications to the Feeder Notes are necessary. (See last two sections and the [example reference file](https://github.com/znuh/kicad-chm36/blob/main/examples/reference_example.dpv).)  
+You can also create a new DPV file with the CharmHigh software if you do not have a DPV file yet.
+Ensure that at least one `EComponent` line can be found in the DPV reference file. (It will be used as a template.)
