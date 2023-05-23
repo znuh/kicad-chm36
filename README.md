@@ -69,7 +69,7 @@ The DPV and KiCad PCB files from the [examples](https://github.com/znuh/kicad-ch
 
 ### Feeder Note Example: ###
 `0.1uF 25V X5R 10% fp:C_0402_1005Metric pn:CL05A104KA5NNNC`  
-Note 1: I usually add the exact part number marked with `pn:` at the end of the Feeder Note. This does not break component matching. (But you *could* set the KiCad Value to `pn:CL05A104KA5NNNC` to ensure only a feeder with this exact part number does match.  
+Note 1: I usually add the exact part number marked with `pn:` at the end of the Feeder Note. This does not break component matching.
 Note 2: I also prefer to prefix the footprint with `fp:` in the Feeder Note. This is also ok because for a match to occur the KiCad footprint identifier (`C_0402_1005Metric`) only needs to be found *somewhere* in the Feeder Note.
 
 ## Additional Named Feeder Params
