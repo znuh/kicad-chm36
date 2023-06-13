@@ -143,6 +143,10 @@ function round(v,n) {
 }
 
 function unpack_value(value) {
+	// interpret first '/' as a whitespace (split symbol)
+	if(value.match(/^\S+\/\S+/))
+		value = value.replace(/\//," ");
+	// split at whitespaces
 	const vals = value.trim().split(/\s+/);
 	const res  = vals.map( val => {
 		const res = { raw: val };
