@@ -1001,6 +1001,17 @@ document.addEventListener("DOMContentLoaded", function() {
 		update_gimme_btn();
 	});
 
+	// sprinkle all suitable nodes with the current version
+	document.querySelectorAll("[id^='version-']").forEach(n => n.textContent = "v" + version);
+
+	// release notes
+	document.getElementById('release_notes').hidden = localStorage.getItem('hide_relnotes') == version;
+	document.getElementById('hide_relnotes').addEventListener('change', e => {
+		if(!e.target.checked) return;
+		localStorage.setItem('hide_relnotes', version);
+		document.getElementById('release_notes').hidden = true;
+	});
+
 	// devmode stuff
 	if(localStorage.getItem('devmode') == 'shibboleet') {
 		document.querySelectorAll("[class~='devmode-enable']").forEach(n => n.disabled = false);
@@ -1013,16 +1024,5 @@ document.addEventListener("DOMContentLoaded", function() {
 	}
 
 	update_tooltips();
-
-	// sprinkle all suitable nodes with the current version
-	document.querySelectorAll("[id^='version-']").forEach(n => n.textContent = "v" + version);
-
-	// release notes
-	document.getElementById('release_notes').hidden = localStorage.getItem('hide_relnotes') == version;
-	document.getElementById('hide_relnotes').addEventListener('change', e => {
-		if(!e.target.checked) return;
-		localStorage.setItem('hide_relnotes', version);
-		document.getElementById('release_notes').hidden = true;
-	});
 
 });
