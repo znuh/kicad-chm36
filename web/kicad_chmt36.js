@@ -698,7 +698,7 @@ function assign_components(dpv, pcb) {
 		Object.entries(pcb.footprints).flatMap(v => v[1]).forEach(comp => {
 			if(comp.side == side) {
 				let target = list.Indeterminate;
-				if(comp.val == "Fiducial")
+				if(comp.val.match(/^Fiducial/i))
 					target = list.Fiducial;
 				else if (feeders.length) {
 					const feeder_idx = assign_component(feeders, comp);
