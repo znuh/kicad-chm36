@@ -233,7 +233,8 @@ function assign_component(feeders, comp) {
 		// 2) match 1st (primary) value exactly (==) (with multiplier conversion)
 		//    unit is optional for primary value (because footprints are named C_0603/L_0603/R_0402/...)
 		//    but if primary value of both component and feeder have a unit they must match
-		if (!(same_units(feeder.params[0], params[0], true) && compare_number(feeder.params[0], params[0], "==")))
+		if ((feeder.params[0].raw != params[0].raw) &&   // only attempt number comparison if raw values don't match
+			(!(same_units(feeder.params[0], params[0], true) && compare_number(feeder.params[0], params[0], "=="))))
 			return false;
 
 		// 3) walk through list of remaining component values:
