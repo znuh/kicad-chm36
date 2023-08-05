@@ -675,21 +675,23 @@ function fixup_rotation(rot) {
 function setup_pos_conversion(side_sel, aux_origin, extents) {
 	if(aux_origin == undefined)
 		return null;
+	const x_ofs = simple_eval(document.getElementById('x_offset').value);
+	const y_ofs = simple_eval(document.getElementById('y_offset').value);
 	//console.log(side_sel, aux_origin);
 	return {
 		"top" : ( (kicad_pos, feeder_orientation) => [
-			round(kicad_pos.x - aux_origin.x, precision),
-			round(aux_origin.y - kicad_pos.y, precision),
+			round(kicad_pos.x - aux_origin.x + x_ofs, precision),
+			round(aux_origin.y - kicad_pos.y + y_ofs, precision),
 			round(fixup_rotation(kicad_pos.rot - feeder_orientation), precision)
 		]),
 		"bot_hflip" : ( (kicad_pos, feeder_orientation) => [
-			round(extents.size.w - (kicad_pos.x - aux_origin.x), precision),
-			round(aux_origin.y - kicad_pos.y, precision),
+			round(extents.size.w - (kicad_pos.x - aux_origin.x) + x_ofs, precision),
+			round(aux_origin.y - kicad_pos.y + y_ofs, precision),
 			round(fixup_rotation(180 - kicad_pos.rot - feeder_orientation), precision)
 		]),
 		"bot_vflip" : ( (kicad_pos, feeder_orientation) => [
-			round(kicad_pos.x - aux_origin.x, precision),
-			round(extents.size.h - aux_origin.y + kicad_pos.y, precision),
+			round(kicad_pos.x - aux_origin.x + x_ofs, precision),
+			round(extents.size.h - aux_origin.y + kicad_pos.y + y_ofs, precision),
 			round(fixup_rotation(180 - kicad_pos.rot + feeder_orientation), precision)
 		])
 	}[side_sel];
@@ -1000,6 +1002,8 @@ document.addEventListener("DOMContentLoaded", function() {
 	document.getElementById('dpv_file').addEventListener('change',   e => fileReader(e,DpvLoader),   false);
 	document.querySelectorAll('input[name="side_select"]').forEach(n => n.addEventListener('change', reassign_components));
 	document.querySelectorAll('input[name="origin_select"]').forEach(n => n.addEventListener('change', redraw_list));
+	document.getElementById('x_offset').addEventListener('change', reassign_components);
+	document.getElementById('y_offset').addEventListener('change', reassign_components);
 	document.getElementById('show_unused').addEventListener('change', redraw_list);
 	document.getElementById('place_all').addEventListener('click', placement_cfg_all);
 	document.getElementById('place_none').addEventListener('click', placement_cfg_all);
