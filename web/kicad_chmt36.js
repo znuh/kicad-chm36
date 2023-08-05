@@ -142,6 +142,14 @@ function round(v,n) {
 	return Math.round(v*factor)/factor;
 }
 
+function simple_eval(str) {
+	let sum=0;
+    let vals = str.replace(/\s/g,'').match(/[+\-]?([0-9\.\s]+)/g) || [];
+    while(vals.length)
+		sum += parseFloat(vals.shift());
+    return round(sum,precision);
+}
+
 function unpack_value(value) {
 	// interpret first '/' as a whitespace (split symbol)
 	if(value.match(/^\S+\/\S+/))
