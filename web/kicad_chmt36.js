@@ -23,8 +23,8 @@
 // OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-const version = "0.1-dev1";
-const required_kicad_version = [20221018, 20221018];
+const version = "0.2-dev1";
+const required_kicad_version = [20221018, 20240108];
 
 const precision = 2; // round to 2 digits after decimal point
 
@@ -610,8 +610,12 @@ function get_footprints(pcb) {
 			const fp    = tmp.substring(tmp.indexOf(":")+1);
 			const side  = elem.find(se => (se[0] == "layer") && (se[1] == '"F.Cu"')) ? "top" : "bot";
 			const pos   = elem.find(se => se[0] == "at");
-			const ref   = JSON.parse(elem.find(se => (se[0] == "fp_text") && (se[1] == "reference"))[2]);
-			const val   = JSON.parse(elem.find(se => (se[0] == "fp_text") && (se[1] == "value"))[2]);
+			const ref   = JSON.parse(elem.find(se => 	((se[0] == "property") && (se[1] == '"Reference"')) ||  // KiCad 8
+														((se[0] == "fp_text")  && (se[1] == "reference"))       // KiCad 7
+												)[2]);
+			const val   = JSON.parse(elem.find(se => 	((se[0] == "property") && (se[1] == '"Value"')) ||  // KiCad 8
+														((se[0] == "fp_text") && (se[1] == "value"))        // KiCad 7
+												)[2]);
 			let [_, designator, idx] = ref.match(/^(\D+)(\d+)/);
 			idx = +idx;
 			const component = {

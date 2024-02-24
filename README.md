@@ -12,7 +12,7 @@ You can try it here: [https://znu.nz/kicad-chm36/](https://znu.nz/kicad-chm36/)
 * PCB height cannot be set (yet)
 * Single PCB mode only (no batch/array mode yet)
 * Centroid correction not supported yet
-* PCBs should be KiCad Version 7.0 (other versions might or might not work)
+* PCBs should be KiCad Version 8.0 or 7.0 (other versions might or might not work)
 
 ## Screenshot
 ![kicad_chm_screenshot](https://github.com/znuh/kicad-chm36/assets/198567/c0ea7d35-5cbf-400e-8bc1-8fdafdb3e81b)
