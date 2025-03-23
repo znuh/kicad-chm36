@@ -1002,6 +1002,8 @@ document.addEventListener("DOMContentLoaded", function() {
 	DpvLoader(localStorage.getItem("last_dpv"));
 
 	// register various event handlers
+	/* clear value on click to allow reloading the same file */
+	document.getElementById('kicad_file').addEventListener('click', e => e.target.value="");
 	document.getElementById('kicad_file').addEventListener('change', e => fileReader(e,KicadLoader), false);
 	document.getElementById('dpv_file').addEventListener('change',   e => fileReader(e,DpvLoader),   false);
 	document.querySelectorAll('input[name="side_select"]').forEach(n => n.addEventListener('change', reassign_components));
