@@ -1005,6 +1005,8 @@ document.addEventListener("DOMContentLoaded", function() {
 	/* clear value on click to allow reloading the same file */
 	document.getElementById('kicad_file').addEventListener('click', e => e.target.value="");
 	document.getElementById('kicad_file').addEventListener('change', e => fileReader(e,KicadLoader), false);
+	/* clear value on click to allow reloading the same file */
+	document.getElementById('dpv_file').addEventListener('click', e => e.target.value="");
 	document.getElementById('dpv_file').addEventListener('change',   e => fileReader(e,DpvLoader),   false);
 	document.querySelectorAll('input[name="side_select"]').forEach(n => n.addEventListener('change', reassign_components));
 	document.querySelectorAll('input[name="origin_select"]').forEach(n => n.addEventListener('change', redraw_list));
